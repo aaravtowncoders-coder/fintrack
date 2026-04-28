@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/fintrack
+  devtools:
+    restart:
+      enabled: true
+
+jwt:
+  secret: mySecretKeyForJWTTokenGenerationWhichIsLongEnough1234567890
+  expiration: 86400000
+
+cors:
+  allowed-origins: http://localhost:5173
