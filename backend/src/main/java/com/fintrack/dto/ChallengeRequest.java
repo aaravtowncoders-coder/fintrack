@@ -1,0 +1,24 @@
+package com.fintrack.dto;
+
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.Data;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Data
+public class ChallengeRequest {
+    @NotBlank
+    private String title;
+
+    @NotNull
+    @Positive
+    private BigDecimal targetAmount;
+
+    private BigDecimal currentAmount;
+
+    @NotNull
+    private LocalDate deadline;
+}
