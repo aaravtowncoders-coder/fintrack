@@ -1,0 +1,134 @@
+HOW TO RUN FINTRACK ON A NEW LAPTOP
+=====================================
+
+Follow these steps to transfer and run the full application (frontend + backend) on another computer.
+
+
+PREREQUISITES - INSTALL THESE FIRST
+------------------------------------
+1. Node.js (v18 or higher)
+   → Download from: https://nodejs.org
+   → Verify: Open terminal and run:  node --version
+
+2. Java Development Kit (JDK 17 or higher)
+   → Download from: https://www.oracle.com/java/technologies/downloads/
+   → After installing, note the install path (e.g. C:\Program Files\Java\jdk-25.0.2)
+   → Verify: Open terminal and run:  java -version
+
+3. MongoDB Community Server
+   → Download from: https://www.mongodb.com/try/download/community
+   → During installation, choose "Install as a Service" so it runs automatically
+   → Default port: 27017
+   → Verify it's running:
+     Windows:  Get-Service MongoDB
+     Mac/Linux:  mongosh --eval "db.runCommand({ping:1})"
+
+
+STEP 1: TRANSFER THE CODE
+--------------------------
+1. Copy the entire Fintrack folder onto a USB drive, Google Drive, OneDrive, or GitHub.
+2. Paste/clone it onto the new laptop (e.g. D:\Fintrack or ~/Fintrack).
+
+TIP: To reduce transfer size, delete these folders BEFORE copying:
+  - node_modules/       (frontend packages — ~300MB, will be reinstalled)
+  - backend/target/     (compiled Java classes — will be rebuilt automatically)
+
+
+STEP 2: SET THE JAVA_HOME ENVIRONMENT VARIABLE
+------------------------------------------------
+The backend needs JAVA_HOME to be set.
+
+Windows (PowerShell - temporary, per session):
+  $env:JAVA_HOME = "C:\Program Files\Java\jdk-25.0.2"
+
+Windows (permanent - run as Administrator):
+  setx JAVA_HOME "C:\Program Files\Java\jdk-25.0.2" /M
+
+Mac/Linux (add to ~/.bashrc or ~/.zshrc):
+  export JAVA_HOME=/usr/lib/jvm/java-17-openjdk
+  (or wherever your JDK is installed)
+
+Update the path above to match YOUR Java installation directory.
+
+
+STEP 3: INSTALL FRONTEND DEPENDENCIES
+---------------------------------------
+Open a terminal in the main Fintrack folder:
+
+  cd D:\Fintrack         (or wherever you placed the project)
+  npm install
+
+This downloads all Node.js packages. Only needed once (or after deleting node_modules).
+
+
+STEP 4: START THE BACKEND (Java/Spring Boot)
+---------------------------------------------
+Open a terminal in the backend folder:
+
+  cd D:\Fintrack\backend
+
+Windows:
+  .\mvnw.cmd spring-boot:run
+
+Mac/Linux:
+  chmod +x mvnw          (only needed once, to make it executable)
+  ./mvnw spring-boot:run
+
+The first run will download Maven dependencies — this may take a few minutes.
+Once you see "Started BackendApplication" in the output, the backend is ready.
+
+  → Backend runs at: http://localhost:8080
+
+
+STEP 5: START THE FRONTEND (React/Vite)
+-----------------------------------------
+Open a SEPARATE terminal in the main Fintrack folder:
+
+  cd D:\Fintrack
+  npm run dev
+
+  → Frontend runs at: http://localhost:5173
+
+Open http://localhost:5173 in your browser — you're good to go!
+
+
+QUICK REFERENCE (after setup is done)
+--------------------------------------
+Every time you want to use Fintrack, open 2 terminals:
+
+  Terminal 1 (Backend):
+    cd D:\Fintrack\backend
+    .\mvnw.cmd spring-boot:run       (Windows)
+    ./mvnw spring-boot:run           (Mac/Linux)
+
+  Terminal 2 (Frontend):
+    cd D:\Fintrack
+    npm run dev
+
+  Then open: http://localhost:5173
+
+
+TROUBLESHOOTING
+----------------
+Problem: "JAVA_HOME not found"
+  → Set JAVA_HOME as shown in Step 2. Make sure the path points to the JDK folder
+    (it should contain a 'bin' folder inside).
+
+Problem: "Port 8080 already in use"
+  → Something else is using port 8080. Find and kill it:
+    Windows:  netstat -ano | findstr :8080
+              Then:  taskkill /PID <pid_number> /F
+    Mac/Linux:  lsof -i :8080
+                Then:  kill -9 <pid_number>
+
+Problem: "Port 5173 already in use"
+  → Run on a different port:  npm run dev -- --port 3000
+
+Problem: Backend can't connect to MongoDB
+  → Make sure MongoDB is installed and running on port 27017.
+    Windows:  Get-Service MongoDB  (Status should be "Running")
+    Mac:  brew services list | grep mongodb
+    Linux:  sudo systemctl status mongod
+
+Problem: "mvnw: Permission denied" (Mac/Linux)
+  → Run:  chmod +x mvnw

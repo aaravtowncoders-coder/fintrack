@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Tracker - Example of Compiled Output</title>
+  
+  <style>
+    /* This is what your Tailwind CSS classes compile to */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Example: bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] */
+    .bg-gradient-navy {
+      background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+    }
+
+    /* Example: min-h-screen */
+    .min-h-screen {
+      min-height: 100vh;
+    }
+
+    /* Example: max-w-7xl mx-auto */
+    .container {
+      max-width: 80rem;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 2rem;
+    }
+
+    /* Example: text-5xl font-bold text-white */
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      color: white;
+      line-height: 1.2;
+    }
+
+    /* Example: text-xl text-gray-400 */
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: #9ca3af;
+      line-height: 1.75;
+    }
+
+    /* Example: glassmorphism card */
+    .glass-card {
+      background: linear-gradient(to bottom right, rgba(31, 41, 55, 0.6), rgba(17, 24, 39, 0.6));
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 1.5rem;
+      padding: 2rem;
+    }
+
+    /* Example: gradient button */
+    .gradient-button {
+      background: linear-gradient(to right, #3b82f6, #9333ea);
+      color: white;
+      padding: 0.75rem 2rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .gradient-button:hover {
+      background: linear-gradient(to right, #2563eb, #7c3aed);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Example: flex layout */
+    .flex {
+      display: flex;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+
+    .gap-4 {
+      gap: 1rem;
+    }
+
+    /* Example: grid layout */
+    .grid {
+      display: grid;
+    }
+
+    .grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    @media (max-width: 768px) {
+      .grid-cols-3 {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+    }
+
+    /* Navigation */
+    nav {
+      padding: 1.5rem 0;
+    }
+
+    .nav-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(to bottom right, #3b82f6, #9333ea);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 5rem 0;
+    }
+
+    .hero-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      backdrop-filter: blur(8px);
+      color: #60a5fa;
+      font-size: 0.875rem;
+      font-weight: 500;
+      width: fit-content;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to right, #60a5fa, #a855f7);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-image {
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 1.5rem;
+    }
+
+    /* Feature Cards */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 5rem;
+    }
+
+    @media (max-width: 768px) {
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .feature-card {
+      background: linear-gradient(to bottom right, rgba(31, 41, 55, 0.4), rgba(17, 24, 39, 0.4));
+      backdrop-filter: blur(24px);
+      border: 1px solid rgba(55, 65, 81, 0.5);
+      border-radius: 1rem;
+      padding: 2rem;
+    }
+
+    .feature-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0.75rem;
+      background: rgba(59, 130, 246, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: #9ca3af;
+      line-height: 1.6;
+    }
+
+    /* Icons (simplified - in real app these would be from lucide-react) */
+    .icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- This is a simplified example of what your compiled Landing Page looks like -->
+  <div class="min-h-screen bg-gradient-navy">
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <div class="nav-content">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: white;">
+                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <span class="logo-text">Finance Tracker</span>
+          </div>
+          <div class="button-group">
+            <button class="gradient-button" onclick="window.location.href='/login'">Login</button>
+            <button class="gradient-button" onclick="window.location.href='/signup'">Get Started</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <div class="hero-text">
+            <span class="badge">Your Personal Finance Assistant</span>
+            
+            <h1 class="hero-title">
+              Track Expenses, Build Better 
+              <span class="gradient-text">Financial Habits</span>
+            </h1>
+            
+            <p class="hero-subtitle">
+              Take control of your finances with our AI-powered tracking system. 
+              Monitor expenses, set goals, and achieve financial freedom.
+            </p>
+            
+            <div class="button-group">
+              <button class="gradient-button" onclick="window.location.href='/signup'">
+                Start Tracking Free →
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-image">
+            <div class="glass-card">
+              <img 
+                src="https://images.unsplash.com/photo-1659018966834-99be9746b49e?w=800&auto=format&fit=crop" 
+                alt="Finance Robot Assistant"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature Cards -->
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: #60a5fa;">
+                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Smart Tracking</h3>
+            <p class="feature-description">
+              Automatically categorize and track your expenses with intelligent AI-powered insights.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(168, 85, 247, 0.1);">
+              <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: #a855f7;">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Goal Setting</h3>
+            <p class="feature-description">
+              Set financial goals and track your progress with gamified challenges and rewards.
+            </p>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-icon" style="background: rgba(20, 184, 166, 0.1);">
+              <svg class="icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color: #14b8a6;">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Secure & Private</h3>
+            <p class="feature-description">
+              Your financial data is encrypted and secure. We never share your information.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // This is what your React components compile to
+    // In the real app, React handles routing, state, and interactions
+    
+    // Example: Handle button clicks (in real app, React Router handles this)
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Finance Tracker loaded!');
+      
+      // Example of what useState compiles to
+      let isMenuOpen = false;
+      
+      function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        console.log('Menu is now:', isMenuOpen ? 'open' : 'closed');
+      }
+      
+      // Example of what useEffect compiles to
+      // This would run when the component mounts
+      console.log('Component mounted - fetching user data...');
+      
+      // In your actual React app, this is all handled automatically
+      // by React, React Router, and your component logic
+    });
+
+    // Your React app includes much more sophisticated functionality:
+    // - React Router for navigation between pages
+    // - State management with useState and useEffect
+    // - Form handling with React Hook Form
+    // - Charts with Recharts
+    // - Animations with Motion
+    // - And much more!
+  </script>
+</body>
+</html>
+
+<!--
+  ═══════════════════════════════════════════════════════════════════════
+  
+  IMPORTANT NOTE:
+  
+  This is a SIMPLIFIED EXAMPLE to show you what compiled HTML/CSS/JS looks like.
+  
+  Your actual React application is MUCH MORE SOPHISTICATED and includes:
+  
+  ✅ Multiple pages with React Router
+  ✅ Complex state management
+  ✅ Interactive forms and dialogs
+  ✅ Real-time charts with Recharts
+  ✅ Smooth animations
+  ✅ Responsive design across all breakpoints
+  ✅ Glassmorphism effects
+  ✅ Mock authentication
+  ✅ Dashboard with sidebar navigation
+  ✅ And much more!
+  
+  When you run `npm run build`, Vite will compile ALL of your React 
+  components, Tailwind CSS, and TypeScript into optimized HTML, CSS, 
+  and JavaScript files that are production-ready.
+  
+  You DON'T need to manually create HTML/CSS/JS files - the build 
+  process does this automatically!
+  
+  ═══════════════════════════════════════════════════════════════════════
+-->
