@@ -4,6 +4,6 @@
 
 [[redirects]]
   from = "/api/*"
-  to = "https://fintrack.onrender.com/api/:splat"
+  to = "https://fintrack-q8td.onrender.com/api/:splat"
   status = 200
   force = true
